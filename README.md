@@ -1,9 +1,11 @@
 # spring-boot-book-app
 Books managing application using Spring Boot
 
-## Requirements
-- JDK:25
+## Tech stack
 - PostgreSql:18
+- JDK:25
+- Spring-boot:3.5.6
+  - Flyway for DB Migration
 
 
 TODO: more information
@@ -31,6 +33,7 @@ GRANT CONNECT ON DATABASE ishtech_dev_db TO bookapp_dev_flyway_user;
 CREATE SCHEMA bookapp_dev_schema;
 CREATE SCHEMA bookapp_dev_aud_schema;
 
+GRANT USAGE ON SCHEMA public                 TO bookapp_dev_user;
 GRANT USAGE ON SCHEMA bookapp_dev_schema     TO bookapp_dev_user;
 GRANT USAGE ON SCHEMA bookapp_dev_aud_schema TO bookapp_dev_user;
 
@@ -41,11 +44,9 @@ GRANT SELECT, INSERT                 ON ALL TABLES IN SCHEMA bookapp_dev_aud_sch
 ALTER DEFAULT PRIVILEGES IN SCHEMA bookapp_dev_schema     GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO bookapp_dev_user;
 ALTER DEFAULT PRIVILEGES IN SCHEMA bookapp_dev_aud_schema GRANT SELECT, INSERT                 ON TABLES TO bookapp_dev_user;
 
-GRANT USAGE ON SCHEMA bookapp_dev_schema     TO bookapp_dev_flyway_user;
-GRANT USAGE ON SCHEMA bookapp_dev_aud_schema TO bookapp_dev_flyway_user;
-
-GRANT CREATE, ALTER ON SCHEMA bookapp_dev_schema     TO bookapp_dev_flyway_user;
-GRANT CREATE, ALTER ON SCHEMA bookapp_dev_aud_schema TO bookapp_dev_flyway_user;
+GRANT USAGE         ON SCHEMA public                 TO bookapp_dev_flyway_user;
+GRANT USAGE, CREATE ON SCHEMA bookapp_dev_schema     TO bookapp_dev_flyway_user;
+GRANT USAGE, CREATE ON SCHEMA bookapp_dev_aud_schema TO bookapp_dev_flyway_user;
 
 GRANT SELECT ON ALL TABLES IN SCHEMA bookapp_dev_schema     TO bookapp_dev_flyway_user;
 GRANT SELECT ON ALL TABLES IN SCHEMA bookapp_dev_aud_schema TO bookapp_dev_flyway_user;
