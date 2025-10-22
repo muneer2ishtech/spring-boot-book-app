@@ -1,5 +1,5 @@
 CREATE TABLE book (
-  id     BIGSERIAL     PRIMARY KEY,
+  id     SERIAL        PRIMARY KEY,
   title  VARCHAR(255)  NOT NULL,
   author VARCHAR(255)  NOT NULL,
   year   SMALLINT      NOT NULL,
