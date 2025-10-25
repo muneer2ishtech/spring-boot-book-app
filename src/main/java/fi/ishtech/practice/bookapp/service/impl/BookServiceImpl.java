@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.annotation.Validated;
 
 import fi.ishtech.practice.bookapp.dto.BookDto;
 import fi.ishtech.practice.bookapp.entity.Book;
@@ -12,18 +13,24 @@ import fi.ishtech.practice.bookapp.mapper.BookMapper;
 import fi.ishtech.practice.bookapp.repository.BookRepository;
 import fi.ishtech.practice.bookapp.service.BookService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ *
+ * @author Muneer Ahmed Syed
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Validated
+@Slf4j
 public class BookServiceImpl implements BookService {
 
 	private final BookRepository bookRepository;
 	private final BookMapper bookMapper;
 
 	private Book findByIdOrThrow(Long id) {
-		return bookRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Book not found with id " + id));
+		return bookRepository.findById(id).orElseThrow();
 	}
 
 	@Override
