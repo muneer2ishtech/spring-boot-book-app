@@ -29,6 +29,11 @@ public class BookGraphQlController {
 	}
 
 	@MutationMapping
+	public BookDto crateBook(@Argument BookDto bookDto) {
+		return bookService.createAndMapToDto(bookDto);
+	}
+
+	@MutationMapping
 	// @formatter:off
 	public BookDto updateBook(@Argument("id") Long id,
 							@Argument("title") String title,
@@ -46,8 +51,10 @@ public class BookGraphQlController {
 	}
 
 	@MutationMapping
-	public void deleteBook(@Argument("id") Long id) {
+	public Boolean deleteBook(@Argument("id") Long id) {
 		bookService.deleteById(id);
+
+		return true;
 	}
 
 }

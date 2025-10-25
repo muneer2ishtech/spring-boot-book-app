@@ -12,7 +12,7 @@ type Query {
 }
 
 type Mutation {
-  createBook(title: String!, author: String!, year: Int!, price: Float!): Book!
+  createBook(input: Book!): Book!
   updateBook(id: ID!, title: String!, author: String!, year: Int!, price: Float!): Book!
   deleteBook(id: ID!): Boolean!
 }
