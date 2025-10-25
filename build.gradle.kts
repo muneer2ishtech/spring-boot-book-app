@@ -11,6 +11,8 @@ description = "Books managing application using Spring Boot"
 // Centralized version declarations
 val ishtechSpringBootJwtVersion="0.4.0-SNAPSHOT"
 val mapstructVersion="1.6.3"
+val jjwtVersion = "0.13.0"
+
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(25)
@@ -44,6 +46,9 @@ dependencies {
 
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:${jjwtVersion}")
+	runtimeOnly("io.jsonwebtoken:jjwt-jackson:${jjwtVersion}")
 
 	runtimeOnly("org.postgresql:postgresql")
 
