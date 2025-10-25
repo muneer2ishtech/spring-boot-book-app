@@ -5,7 +5,6 @@ import java.util.List;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -34,7 +33,6 @@ public interface BookMapper {
 	@Mapping(source = "price", target = "price")
 	BookDto toBriefDto(Book entity);
 
-	//@IterableMapping
 	@InheritConfiguration(name = "toBriefDto")
 	List<BookDto> toBriefDto(List<Book> entities);
 
