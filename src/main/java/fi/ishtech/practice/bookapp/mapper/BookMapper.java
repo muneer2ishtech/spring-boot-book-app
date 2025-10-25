@@ -22,6 +22,7 @@ import fi.ishtech.practice.bookapp.entity.Book;
 public interface BookMapper {
 
 	/**
+	 * Map basic attributes from entity to DTO
 	 *
 	 * @param entity {@link Book}
 	 * @return {@link BookDto}
@@ -34,6 +35,12 @@ public interface BookMapper {
 	@Mapping(source = "price", target = "price")
 	BookDto toBriefDto(Book entity);
 
+	/**
+	 * Maps list of entities to DTOs
+	 *
+	 * @param entities {@link List}&lt;{@link Book}&gt;
+	 * @return {@link List}&lt;{@link BookDto}&gt;
+	 */
 	@InheritConfiguration(name = "toBriefDto")
 	List<BookDto> toBriefDto(List<Book> entities);
 
