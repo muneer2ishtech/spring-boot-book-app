@@ -1,5 +1,7 @@
 package fi.ishtech.practice.bookapp.controller;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,13 @@ public class CustomExceptionHandler {
 	@ExceptionHandler(IllegalArgumentException.class)
 	public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
 		log.error("handle IllegalArgumentException", ex);
+
+		return ResponseEntity.badRequest().body(ex.getMessage());
+	}
+
+	@ExceptionHandler(NoSuchElementException.class)
+	public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException ex) {
+		log.error("handle NoSuchElementException", ex);
 
 		return ResponseEntity.badRequest().body(ex.getMessage());
 	}
