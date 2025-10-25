@@ -12,11 +12,6 @@ TODO: more information
 
 ## Database
 
-- `BIGINT` vs `INT` for `id` columns
-     - `BIGINT` is `-2^63` to `2^63-1` (64 bits or 8 bytes)
-     - `INT` is `-2^31` to `2^31-1` (32 bits or 4 bytes)
-         - giving more than 2 billion positive values, enough for any app
-
 ### Dev DB setup
 - Run following for first time before launching spring-boot-boot-app after PostgreSql is started
 
