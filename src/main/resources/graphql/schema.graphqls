@@ -7,7 +7,7 @@ type Book {
 }
 
 type Query {
-  books: [Book!]!
+  books: [Book!]
   book(id: ID!): Book
 }
 

@@ -8,7 +8,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import fi.ishtech.practice.bookapp.entity.Book;
+import fi.ishtech.practice.bookapp.dto.BookDto;
 import fi.ishtech.practice.bookapp.service.BookService;
 import lombok.RequiredArgsConstructor;
 
@@ -19,35 +19,35 @@ public class BookGraphQlController {
 	private final BookService bookService;
 
 	@QueryMapping
-	public List<Book> books() {
-		return bookService.getAll();
+	public List<BookDto> books() {
+		return bookService.findAllAndMapToDto();
 	}
 
 	@QueryMapping
-	public Book book(@Argument("id") Long id) {
-		return bookService.getById(id);
+	public BookDto book(@Argument("id") Long id) {
+		return bookService.findByIdAndMapToDto(id);
 	}
 
 	@MutationMapping
-	public Book updateBook(@Argument("id") Long id,
+	// @formatter:off
+	public BookDto updateBook(@Argument("id") Long id,
 							@Argument("title") String title,
 							@Argument("author") String author,
 							@Argument("year") Short year,
 							@Argument("price") BigDecimal price) {
-		Book book = new Book();
-		book.setTitle(title);
-		book.setAuthor(author);
-		book.setYear(year);
-		book.setPrice(price);
+	// @formatter:on
+		BookDto bookDto = new BookDto();
+		bookDto.setTitle(title);
+		bookDto.setAuthor(author);
+		bookDto.setYear(year);
+		bookDto.setPrice(price);
 
-		return bookService.update(id, book);
+		return bookService.updateByIdAndMapToDto(id, bookDto);
 	}
 
 	@MutationMapping
-	public Boolean deleteBook(@Argument("id") Long id) {
-		bookService.delete(id);
-
-		return true;
+	public void deleteBook(@Argument("id") Long id) {
+		bookService.deleteById(id);
 	}
 
 }
