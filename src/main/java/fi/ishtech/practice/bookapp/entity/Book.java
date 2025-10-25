@@ -15,7 +15,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "book", uniqueConstraints = @UniqueConstraint(name = "", columnNames = { "title", "author" }))
+@Table(name = "book",
+		uniqueConstraints = @UniqueConstraint(name = "", columnNames = { "title", "author" }))
 @Data
 @NoArgsConstructor
 public class Book implements Serializable {
@@ -25,7 +26,7 @@ public class Book implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(columnDefinition = "SERIAL")
+	@Column(nullable = false, updatable = false)
 	private Long id;
 
 	@Column(nullable = false, length = 255)
