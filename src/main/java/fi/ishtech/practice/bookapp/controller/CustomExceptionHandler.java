@@ -27,4 +27,11 @@ public class CustomExceptionHandler {
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+		log.error("handle IllegalArgumentException", ex);
+
+		return ResponseEntity.badRequest().body(ex.getMessage());
+	}
+
 }
