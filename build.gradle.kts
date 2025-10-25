@@ -12,6 +12,7 @@ description = "Books managing application using Spring Boot"
 val ishtechSpringBootJwtVersion="0.4.0-SNAPSHOT"
 val mapstructVersion="1.6.3"
 val jjwtVersion = "0.13.0"
+val springdocVersion = "2.8.13"
 
 java {
 	toolchain {
@@ -57,6 +58,8 @@ dependencies {
 
 	implementation("org.mapstruct:mapstruct:${mapstructVersion}")
 	annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
+
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
