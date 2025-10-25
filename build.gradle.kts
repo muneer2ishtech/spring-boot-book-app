@@ -8,6 +8,9 @@ group = "fi.ishtech.practice"
 version = "0.0.1-SNAPSHOT"
 description = "Books managing application using Spring Boot"
 
+// Centralized version declarations
+val ishtechSpringBootJwtVersion="0.4.0-SNAPSHOT"
+val mapstructVersion="1.6.3"
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(25)
@@ -26,7 +29,7 @@ repositories {
 }
 
 dependencies {
-	implementation("fi.ishtech.practice:ishtech-spring-boot-jwt-lib:0.4.0-SNAPSHOT")
+	implementation("fi.ishtech.practice:ishtech-spring-boot-jwt-lib:${ishtechSpringBootJwtVersion}")
 
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -46,8 +49,8 @@ dependencies {
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
-	implementation("org.mapstruct:mapstruct:1.6.3")
-	annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
+	implementation("org.mapstruct:mapstruct:${mapstructVersion}")
+	annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
