@@ -43,6 +43,7 @@ public interface BookMapper {
 	 * @return updated {@link Book} entity
 	 */
 	@InheritInverseConfiguration(name = "toBriefDto")
+	@Mapping(source = "id", target = "id", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 	Book toEntity(BookDto dto, @MappingTarget Book entity);
 
 	/**
