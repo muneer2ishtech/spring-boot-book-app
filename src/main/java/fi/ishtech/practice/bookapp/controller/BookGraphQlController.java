@@ -29,7 +29,19 @@ public class BookGraphQlController {
 	}
 
 	@MutationMapping
-	public BookDto crateBook(@Argument BookDto bookDto) {
+	// @formatter:off
+	public BookDto createBook(
+							@Argument("title") String title,
+							@Argument("author") String author,
+							@Argument("year") Short year,
+							@Argument("price") BigDecimal price) {
+	// @formatter:on
+		BookDto bookDto = new BookDto();
+		bookDto.setTitle(title);
+		bookDto.setAuthor(author);
+		bookDto.setYear(year);
+		bookDto.setPrice(price);
+
 		return bookService.createAndMapToDto(bookDto);
 	}
 
