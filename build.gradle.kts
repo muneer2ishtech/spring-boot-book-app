@@ -9,7 +9,7 @@ version = "0.2.0-SNAPSHOT"
 description = "Books managing application using Spring Boot"
 
 // Centralized version declarations
-val ishtechSpringBootJwtVersion="0.5.0-SNAPSHOT"
+val ishtechSpringbootJwtauthVersion="0.5.0-SNAPSHOT"
 val mapstructVersion="1.6.3"
 val jjwtVersion = "0.13.0"
 val springdocVersion = "2.8.13"
@@ -32,7 +32,7 @@ repositories {
 }
 
 dependencies {
-	implementation("fi.ishtech.practice:ishtech-spring-boot-jwt-lib:${ishtechSpringBootJwtVersion}")
+	implementation("fi.ishtech.practice:ishtech-springboot-jwtaut-api:${ishtechSpringbootJwtauthVersion}")
 
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
