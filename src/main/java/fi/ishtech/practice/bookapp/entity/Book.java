@@ -15,8 +15,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "book",
-		uniqueConstraints = @UniqueConstraint(name = "", columnNames = { "title", "author" }))
+@Table(name = "t_book",
+		uniqueConstraints = @UniqueConstraint(name = "uk_book_title_author", columnNames = { "title", "author" }))
 @Data
 @NoArgsConstructor
 public class Book implements Serializable {
@@ -35,7 +35,7 @@ public class Book implements Serializable {
 	@Column(nullable = false, length = 255)
 	private String author;
 
-	@Column(nullable = false, columnDefinition = "SMALLINT")
+	@Column(nullable = false, precision = 4, columnDefinition = "SMALLINT")
 	private Short year;
 
 	@Column(nullable = false, precision = 10, scale = 2)
