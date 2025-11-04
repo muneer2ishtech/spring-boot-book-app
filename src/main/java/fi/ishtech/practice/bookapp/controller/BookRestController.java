@@ -131,7 +131,7 @@ public class BookRestController {
 	@PostMapping("/without-prep-stmt")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void saveWithoutPreparedStatement(@RequestBody @Valid BookDto bookDto) {
-		bookDao.saveWithoutPreparedStatement(bookDto);
+		bookDao.saveWithoutPreparedStatementWithoutEscapes(bookDto);
 	}
 
 }

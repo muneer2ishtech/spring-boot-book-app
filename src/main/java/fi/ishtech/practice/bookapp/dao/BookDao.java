@@ -38,10 +38,24 @@ public class BookDao {
 	 * 
 	 * @param bookDto {@link BookDto}
 	 */
-	public void saveWithoutPreparedStatement(BookDto book) {
+	public void saveWithoutPreparedStatementWithEscapes(BookDto book) {
 		String sql = String.format("INSERT INTO bookapp_dev_schema.t_book (title, author, year, price) VALUES ('%s', '%s', %d, %f)",
-				book.getTitle(),//.replace("'", "''"), // Basic escaping for single quotes
-				book.getAuthor(),//.replace("'", "''"), // Basic escaping for single quotes
+				book.getTitle().replace("'", "''"), // Basic escaping for single quotes
+				book.getAuthor().replace("'", "''"), // Basic escaping for single quotes
+				book.getYear(), book.getPrice());
+		log.debug(sql);
+		jdbcTemplate.update(sql);
+	}
+
+	/**
+	 * Save book without prepared statement (using string concatenation - NOT RECOMMENDED for production)
+	 * 
+	 * @param bookDto {@link BookDto}
+	 */
+	public void saveWithoutPreparedStatementWithoutEscapes(BookDto book) {
+		String sql = String.format("INSERT INTO bookapp_dev_schema.t_book (title, author, year, price) VALUES ('%s', '%s', %d, %f)",
+				book.getTitle(),
+				book.getAuthor(),
 				book.getYear(), book.getPrice());
 		log.debug(sql);
 		jdbcTemplate.update(sql);
