@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import fi.ishtech.practice.bookapp.dao.BookDao;
 import fi.ishtech.practice.bookapp.dto.BookDto;
 import fi.ishtech.practice.bookapp.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,6 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BookRestController {
 
 	private final BookService bookService;
+	private final BookDao bookDao;
 
 	// @formatter:off
 	@Operation(summary = "Create a new book",
@@ -118,6 +120,18 @@ public class BookRestController {
 		log.debug("Deleted Book({})", id);
 
 		return ResponseEntity.status(HttpStatus.GONE).build();
+	}
+
+	@PostMapping("/with-prep-stmt")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void saveWithPreparedStatement(@RequestBody @Valid BookDto bookDto) {
+		bookDao.saveWithPreparedStatement(bookDto);
+	}
+
+	@PostMapping("/without-prep-stmt")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void saveWithoutPreparedStatement(@RequestBody @Valid BookDto bookDto) {
+		bookDao.saveWithoutPreparedStatement(bookDto);
 	}
 
 }
