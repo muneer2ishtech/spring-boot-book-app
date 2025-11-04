@@ -32,7 +32,7 @@ repositories {
 }
 
 dependencies {
-	implementation("fi.ishtech.practice:ishtech-springboot-jwtaut-api:${ishtechSpringbootJwtauthVersion}")
+	implementation("fi.ishtech.springboot:ishtech-springboot-jwtauth-api:${ishtechSpringbootJwtauthVersion}")
 
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
