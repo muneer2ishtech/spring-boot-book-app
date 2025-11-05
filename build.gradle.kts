@@ -5,12 +5,12 @@ plugins {
 }
 
 group = "fi.ishtech.practice"
-version = "0.2.0-SNAPSHOT"
+version = "0.2.0"
 description = "Books managing application using Spring Boot"
 
 // Centralized version declarations
 val ishtechSpringbootJwtauthVersion = "0.5.0"
-val mapstructVersion="1.6.3"
+val mapstructVersion = "1.6.3"
 val jjwtVersion = "0.13.0"
 val springdocVersion = "2.8.13"
 
