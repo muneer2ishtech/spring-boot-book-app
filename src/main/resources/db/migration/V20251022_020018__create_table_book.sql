@@ -1,4 +1,4 @@
-CREATE TABLE book (
+CREATE TABLE t_book (
   id     BIGSERIAL     PRIMARY KEY,
   title  VARCHAR(255)  NOT NULL,
   author VARCHAR(255)  NOT NULL,

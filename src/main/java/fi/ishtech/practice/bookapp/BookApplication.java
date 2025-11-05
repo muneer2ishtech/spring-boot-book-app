@@ -7,15 +7,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 // @formatter:off
 @SpringBootApplication(scanBasePackages = {
-		"fi.ishtech.springbootjwt",
+		"fi.ishtech.springboot.jwtauth",
 		"fi.ishtech.practice.bookapp"
 })
 @EntityScan(basePackages = {
-		"fi.ishtech.springbootjwt.entity",
+		"fi.ishtech.springboot.jwtauth.entity",
 		"fi.ishtech.practice.bookapp.entity"
 })
 @EnableJpaRepositories(basePackages = {
-		"fi.ishtech.springbootjwt.repo",
+		"fi.ishtech.springboot.jwtauth.repo",
 		"fi.ishtech.practice.bookapp.repository"
 })
 //@formatter:on

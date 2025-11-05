@@ -5,12 +5,12 @@ plugins {
 }
 
 group = "fi.ishtech.practice"
-version = "0.1.0"
+version = "0.2.0"
 description = "Books managing application using Spring Boot"
 
 // Centralized version declarations
-val ishtechSpringBootJwtVersion="0.4.0"
-val mapstructVersion="1.6.3"
+val ishtechSpringbootJwtauthVersion = "0.5.0"
+val mapstructVersion = "1.6.3"
 val jjwtVersion = "0.13.0"
 val springdocVersion = "2.8.13"
 
@@ -32,7 +32,7 @@ repositories {
 }
 
 dependencies {
-	implementation("fi.ishtech.practice:ishtech-spring-boot-jwt-lib:${ishtechSpringBootJwtVersion}")
+	implementation("fi.ishtech.springboot:ishtech-springboot-jwtauth-api:${ishtechSpringbootJwtauthVersion}")
 
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
