@@ -1,1 +1,1 @@
-rootProject.name = "book-app"
+rootProject.name = "springboot-book-app"
