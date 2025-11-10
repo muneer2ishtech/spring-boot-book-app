@@ -1,7 +1,16 @@
 HELP.md
+
+### Maven ###
+!.mvn/wrapper/maven-wrapper.jar
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+pom.xml.versionsBackup
+
+### Gradle ###
 .gradle
-build/
 !gradle/wrapper/gradle-wrapper.jar
+build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
@@ -13,6 +22,7 @@ build/
 .settings
 .springBeans
 .sts4-cache
+
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
@@ -35,3 +45,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Log files ###
+*.log*
+
+### Local ###
+.DS_Store
