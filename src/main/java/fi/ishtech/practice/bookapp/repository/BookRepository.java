@@ -1,9 +1,13 @@
 package fi.ishtech.practice.bookapp.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import fi.ishtech.base.repo.BaseStandardRepo;
 import fi.ishtech.practice.bookapp.entity.Book;
 
-public interface BookRepository  extends JpaRepository<Book, Long> {
+/**
+ * Repository for entity {@link Book}
+ *
+ * @author Muneer Ahmed Syed
+ */
+public interface BookRepository extends BaseStandardRepo<Book> {
 
 }

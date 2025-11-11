@@ -9,10 +9,12 @@ version = "0.3.0-SNAPSHOT"
 description = "Books managing application using Spring Boot"
 
 // Centralized version declarations
+val ishtechBaseJpaVersion = "3.0.0"
 val ishtechSpringbootJwtauthVersion = "0.6.0-SNAPSHOT"
 val mapstructVersion = "1.6.3"
 val jjwtVersion = "0.13.0"
 val springdocVersion = "2.8.13"
+val hibernateVersion = "6.6.33.Final"
 
 java {
 	toolchain {
@@ -32,6 +34,7 @@ repositories {
 }
 
 dependencies {
+	implementation("fi.ishtech.base:ishtech-base-jpa:${ishtechBaseJpaVersion}")
 	implementation("fi.ishtech.springboot:ishtech-springboot-jwtauth-api:${ishtechSpringbootJwtauthVersion}")
 
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -47,6 +50,7 @@ dependencies {
 	implementation("org.flywaydb:flyway-database-postgresql")
 
 	implementation("org.hibernate.orm:hibernate-envers")
+	annotationProcessor("org.hibernate:hibernate-jpamodelgen:${hibernateVersion}")
 
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")

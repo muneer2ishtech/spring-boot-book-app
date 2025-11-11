@@ -2,6 +2,7 @@ package fi.ishtech.practice.bookapp.service;
 
 import java.util.List;
 
+import fi.ishtech.base.service.BaseStandardService;
 import fi.ishtech.practice.bookapp.dto.BookDto;
 import fi.ishtech.practice.bookapp.entity.Book;
 import jakarta.validation.Valid;
@@ -12,7 +13,7 @@ import jakarta.validation.constraints.NotNull;
  *
  * @author Muneer Ahmed Syed
  */
-public interface BookService {
+public interface BookService extends BaseStandardService<Book, BookDto> {
 
 	/**
 	 * Creates new {@link Book} and returns the Dto with ID
@@ -40,7 +41,7 @@ public interface BookService {
 	/**
 	 * Finds by id and updates {@link Book} entity and throws exception if not present
 	 *
-	 * @param id {@link Long}
+	 * @param id   {@link Long}
 	 * @param book {@link BookDto}
 	 * @return {@link BookDto}
 	 */

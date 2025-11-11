@@ -29,14 +29,20 @@ public class BookServiceImpl implements BookService {
 	private final BookRepository bookRepository;
 	private final BookMapper bookMapper;
 
-	private Book findByIdOrThrow(Long id) {
-		return bookRepository.findById(id).orElseThrow();
+	@Override
+	public BookRepository getRepo() {
+		return bookRepository;
+	}
+
+	@Override
+	public BookMapper getMapper() {
+		return bookMapper;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public BookDto findByIdAndMapToDto(Long id) {
-		return bookMapper.toBriefDto(findByIdOrThrow(id));
+		return bookMapper.toBriefDto(findOneByIdOrElseThrow(id));
 	}
 
 	@Override
@@ -58,7 +64,7 @@ public class BookServiceImpl implements BookService {
 	public BookDto updateByIdAndMapToDto(Long id, BookDto bookDto) {
 		Assert.isTrue(bookDto.getId() == null || id == bookDto.getId(), "Input id param not matching with id in DTO");
 
-		Book book = findByIdOrThrow(id);
+		Book book = findOneByIdOrElseThrow(id);
 
 		bookMapper.toEntity(bookDto, book);
 

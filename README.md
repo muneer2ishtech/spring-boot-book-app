@@ -8,14 +8,14 @@ Books managing application using Spring Boot
 - Database Migration: Flyway
 - Containerization: Docker
 
-## 
+##
 
 [GIT](https://github.com/muneer2ishtech/springboot-book-app)
 
 
 ## Design
-- [ishtech-jpa-base](https://github.com/ishtech/ishtech-base-jpa)
-- [ishtech-springboot-jwtauth](https://github.com/ishtech/ishtech-springboot-jwtauth)
+- [ishtech-jpa-base](https://github.com/ishtech/ishtech-base-jpa) - Foundational JPA and other base classes
+- [ishtech-springboot-jwtauth](https://github.com/ishtech/ishtech-springboot-jwtauth) - For Authentiation & Authorization
 
 ## APIs
 

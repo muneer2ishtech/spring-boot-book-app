@@ -7,5 +7,7 @@ CREATE TABLE ${audit_schema_name}.book_aud (
   author        VARCHAR(255)      NULL,
   year          SMALLINT          NULL,
   price         NUMERIC(10,2)     NULL,
+  is_active     BOOLEAN           NULL,
+  description   TEXT              NULL
   PRIMARY KEY(id, rev)
 );
