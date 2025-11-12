@@ -62,7 +62,9 @@ touch src/main/resources/db/migration/V$(date +"%Y%m%d_%H%M%S")__create_table_TO
 
 - Ensure the port, db properties etc are correct in application-xxx.properties
 
-### Local Gradle Build
+### Gradle
+
+#### Local Gradle Build
 
 - Build without tests
 
@@ -76,8 +78,42 @@ touch src/main/resources/db/migration/V$(date +"%Y%m%d_%H%M%S")__create_table_TO
 ./gradlew clean build
 ```
 
-- Run
+#### Local Gradle Run
 
 ```
 ./gradlew bootRun --args='--spring.profiles.active=dev'
+```
+
+### Docker
+
+#### Docker build
+
+```
+docker build . \
+  --build-arg SERVER_PORT=8080 \
+  -t "muneer2ishtech/$(./gradlew -q printProjectName):$(./gradlew -q printVersion)"
+
+```
+
+#### Run with docker compose
+
+- Docker compose is self contained and has both spring-boot application and mariadb is present, so  you don't need anything else other than docker
+
+- To stop if running
+    - `docker compose stop`
+
+- To stop and remove including volumes and built images
+    - `docker compose down -v --rmi=local`
+
+- To build and start
+    - You can prefix with env vars as in below example
+    - Below args are optional, you can change to desired value or skip, if skipped they will use default value
+        - `DB_PORT` if skipped DB will be exposed on default `3306`
+        - `SERVER_PORT_REMOTE` if skipped spring-boot app will run on default `8080`
+        - `SERVER_PORT_LOCAL` if skipped spring-boot app will be exposed on default `8080`
+
+```
+SERVER_PORT_LOCAL=8383 DB_PORT=25432 APP_VERSION=$(./gradlew -q printVersion) \
+docker compose up --build
+
 ```
