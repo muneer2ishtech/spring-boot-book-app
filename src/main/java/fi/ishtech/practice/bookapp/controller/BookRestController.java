@@ -1,7 +1,9 @@
 package fi.ishtech.practice.bookapp.controller;
 
-import java.util.List;
+import jakarta.validation.Valid;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +20,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fi.ishtech.practice.bookapp.dao.BookDao;
 import fi.ishtech.practice.bookapp.dto.BookDto;
+import fi.ishtech.practice.bookapp.dto.BookFilterParams;
 import fi.ishtech.practice.bookapp.service.BookService;
+import fi.ishtech.practice.bookapp.spec.BookSpec;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  *
@@ -67,10 +72,19 @@ public class BookRestController {
 	})
 	// @formatter:on
 	@GetMapping("/{id}")
-	public BookDto findById(@PathVariable Long id) {
-		return bookService.findByIdAndMapToDto(id);
+	public BookDto findBookById(@PathVariable Long id) {
+		log.trace("Input id:{}", id);
+
+		return bookService.findOneByIdAndMapToVoOrElseThrow(id);
 	}
 
+	/**
+	 * Finds Book(s) by search filters and pagination
+	 *
+	 * @param params   - {@link BookFilterParams}
+	 * @param pageable - {@link Pageable}
+	 * @return {@link ResponseEntity}&lt;{@link Page}&lt;{@link BookDto}&gt;&gt;
+	 */
 	// @formatter:off
 	@Operation(summary = "List all books", description = "Retrieves a list of all available books.")
 	@ApiResponses(value = {
@@ -80,8 +94,14 @@ public class BookRestController {
 	})
 	// @formatter:on
 	@GetMapping
-	public List<BookDto> findAll() {
-		return bookService.findAllAndMapToDto();
+	public ResponseEntity<Page<BookDto>> searchBooks(@Valid BookFilterParams params, Pageable pageable) {
+		log.trace("UserProfileFilterParams:{}", params);
+
+		BookSpec bookSpec = new BookSpec(params);
+
+		Page<BookDto> result = bookService.findAllAndMapToVo(bookSpec, pageable);
+
+		return ResponseEntity.ok(result);
 	}
 
 	// @formatter:off

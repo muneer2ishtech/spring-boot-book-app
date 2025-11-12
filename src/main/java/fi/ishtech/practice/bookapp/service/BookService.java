@@ -2,11 +2,16 @@ package fi.ishtech.practice.bookapp.service;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import fi.ishtech.base.service.BaseStandardService;
 import fi.ishtech.practice.bookapp.dto.BookDto;
 import fi.ishtech.practice.bookapp.entity.Book;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
+import fi.ishtech.practice.bookapp.spec.BookSpec;
 
 /**
  * Service interface for Book related operations
@@ -24,19 +29,20 @@ public interface BookService extends BaseStandardService<Book, BookDto> {
 	BookDto createAndMapToDto(@NotNull @Valid BookDto bookDto);
 
 	/**
-	 * Finds {@link Book} by id and throws exception if not present
+	 * Finds Book(s) by Specification and paginate them
 	 *
-	 * @param id {@link Long}
-	 * @return {@link BookDto}
+	 * @param spec     {@link BookSpec}
+	 * @param pageable {@link Pageable}
+	 * @return {@link Page}&lt;{@link BookDto}&gt;
 	 */
-	BookDto findByIdAndMapToDto(@NotNull Long id);
+	Page<BookDto> findAllAndMapToVo(BookSpec spec, Pageable pageable);
 
 	/**
-	 * Finds all {@link Book}s
+	 * Finds all Book(s) and maps to Dto
 	 *
 	 * @return {@link List}&lt;{@link BookDto}&gt;
 	 */
-	List<BookDto> findAllAndMapToDto();
+	List<BookDto> findAllAndMapToVo();
 
 	/**
 	 * Finds by id and updates {@link Book} entity and throws exception if not present

@@ -2,6 +2,8 @@ package fi.ishtech.practice.bookapp.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -12,6 +14,8 @@ import fi.ishtech.practice.bookapp.entity.Book;
 import fi.ishtech.practice.bookapp.mapper.BookMapper;
 import fi.ishtech.practice.bookapp.repository.BookRepository;
 import fi.ishtech.practice.bookapp.service.BookService;
+import fi.ishtech.practice.bookapp.spec.BookSpec;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,14 +45,27 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public BookDto findByIdAndMapToDto(Long id) {
-		return bookMapper.toBriefDto(findOneByIdOrElseThrow(id));
+	public BookDto findOneByIdAndMapToVoOrElseThrow(Long id) {
+		return getMapper().toBriefDto(this.findOneByIdOrElseThrow(id));
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<BookDto> findAllAndMapToDto() {
-		return bookMapper.toBriefDto(bookRepository.findAll());
+	public Page<BookDto> findAllAndMapToVo(BookSpec spec, Pageable pageable) {
+		return this.findAll(spec, pageable).map(getMapper()::toBriefDto);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<BookDto> findAllAndMapToVo() {
+		List<Book> books = this.findAll();
+
+		// @formatter:off
+		return books == null ? null
+				: books.stream()
+					.map(getMapper()::toBriefDto)
+					.toList();
+		// @formatter:on
 	}
 
 	@Override

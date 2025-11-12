@@ -20,12 +20,12 @@ public class BookGraphQlController {
 
 	@QueryMapping
 	public List<BookDto> books() {
-		return bookService.findAllAndMapToDto();
+		return bookService.findAllAndMapToVo();
 	}
 
 	@QueryMapping
 	public BookDto book(@Argument("id") Long id) {
-		return bookService.findByIdAndMapToDto(id);
+		return bookService.findOneByIdAndMapToVoOrElseThrow(id);
 	}
 
 	@MutationMapping

@@ -1,15 +1,11 @@
 package fi.ishtech.practice.bookapp.mapper;
 
-import java.util.List;
-
 import org.mapstruct.BeanMapping;
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.Named;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import fi.ishtech.base.annotations.mapstruct.BriefMapping;
@@ -31,7 +27,6 @@ public interface BookMapper extends BaseStandardMapper {
 	 * @param entity {@link Book}
 	 * @return {@link BookDto}
 	 */
-	@Named("toBriefDto")
 	@BriefMapping
 	@BeanMapping(ignoreByDefault = true)
 	@InheritConfiguration(name = "toBaseStandardVo")
@@ -40,18 +35,7 @@ public interface BookMapper extends BaseStandardMapper {
 	@Mapping(source = "author", target = "author")
 	@Mapping(source = "year", target = "year")
 	@Mapping(source = "price", target = "price")
-	BookDto toBriefVo(Book entity);
-
-	/**
-	 * Maps list of entities to DTOs
-	 *
-	 * @param entities {@link List}&lt;{@link Book}&gt;
-	 * @return {@link List}&lt;{@link BookDto}&gt;
-	 */
-	@BriefMapping
-	@BeanMapping(ignoreByDefault = true)
-	@InheritConfiguration(name = "toBriefDto")
-	List<BookDto> toBriefVo(List<Book> entities);
+	BookDto toBriefDto(Book entity);
 
 	/**
 	 *
@@ -59,7 +43,7 @@ public interface BookMapper extends BaseStandardMapper {
 	 * @param entity {@link Book}
 	 * @return updated {@link Book} entity
 	 */
-	//@InheritInverseConfiguration(name = "toBriefVo")
+	@InheritInverseConfiguration(name = "toBriefVo")
 	@Mapping(source = "id", target = "id", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 	Book toEntity(BookDto dto, @MappingTarget Book entity);
 
