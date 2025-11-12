@@ -43,7 +43,7 @@ public interface BookMapper extends BaseStandardMapper {
 	 * @param entity {@link Book}
 	 * @return updated {@link Book} entity
 	 */
-	@InheritInverseConfiguration(name = "toBriefVo")
+	@InheritInverseConfiguration(name = "toBriefDto")
 	@Mapping(source = "id", target = "id", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 	Book toEntity(BookDto dto, @MappingTarget Book entity);
 
@@ -52,7 +52,7 @@ public interface BookMapper extends BaseStandardMapper {
 	 * @param dto {@link BookDto}
 	 * @return new {@link Book} entity
 	 */
-	@InheritInverseConfiguration(name = "toBriefVo")
+	@InheritInverseConfiguration(name = "toBriefDto")
 	@Mapping(target = "id", ignore = true)
 	Book toNewEntity(BookDto dto);
 
